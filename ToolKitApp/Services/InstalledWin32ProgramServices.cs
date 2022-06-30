@@ -3,11 +3,11 @@ namespace ToolKitApp.Services
 {
     public class InstalledWin32ProgramServices
     {
-        public static List<InstalledWin32ProgramModel> Get_InstalledWin32Programs(CredentialsModel credentials)
+        public static async Task<List<InstalledWin32ProgramModel>> Get_InstalledWin32Programs(CredentialsModel credentials)
         {
             try
             {
-                var result = ToolKitLibrary.ToolKit.SystemManagement.Remoting.QueryCollection(
+                var result = await ToolKitLibrary.ToolKit.SystemManagement.Remoting.QueryCollection(
                     credentials.Domain,
                     credentials.ComputerName,
                     credentials.Username,

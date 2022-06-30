@@ -184,7 +184,7 @@ namespace ToolKitApp.Views.Controllers
                 branch_MediaType_Label.Nodes.Add(((LogicalDiskModel.enumMediaType)disk.MediaType).ToString());
             }
         }
-        public static void Build_TreeViewAudit_Monitors(TreeView treeView, MonitorListModel monitors)
+        public static async Task Build_TreeViewAudit_Monitors(TreeView treeView, MonitorListModel monitors)
         {
             var root_Monitors = treeView.Nodes.Add("Monitor");
 
@@ -192,22 +192,27 @@ namespace ToolKitApp.Views.Controllers
                 return;
 
             // Build branch.
-            foreach (var monitor in monitors.MonitorList)
-            {
-                var branch_UserFriendlyName = root_Monitors.Nodes.Add(monitor.UserFriendlyName);
+            await Task.Run(() =>
+             {
+                 foreach (var monitor in monitors.MonitorList)
+                 {
+                     var branch_UserFriendlyName = root_Monitors.Nodes.Add(monitor.UserFriendlyName);
 
-                var branch_ManufacturerLabel = branch_UserFriendlyName.Nodes.Add("Manufacturer");
-                branch_ManufacturerLabel.Nodes.Add(monitor.ManufacturerName);
+                     var branch_ManufacturerLabel = branch_UserFriendlyName.Nodes.Add("Manufacturer");
+                     branch_ManufacturerLabel.Nodes.Add(monitor.ManufacturerName);
 
-                var branch_ProductIDLabel = branch_UserFriendlyName.Nodes.Add("Product ID");
-                branch_ProductIDLabel.Nodes.Add(monitor.ProductCodeID);
+                     var branch_ProductIDLabel = branch_UserFriendlyName.Nodes.Add("Product ID");
+                     branch_ProductIDLabel.Nodes.Add(monitor.ProductCodeID);
 
-                var branch_SerialNumberIDLabel = branch_UserFriendlyName.Nodes.Add("Serial Number ID");
-                branch_SerialNumberIDLabel.Nodes.Add(monitor.SerialNumberID);
+                     var branch_SerialNumberIDLabel = branch_UserFriendlyName.Nodes.Add("Serial Number ID");
+                     branch_SerialNumberIDLabel.Nodes.Add(monitor.SerialNumberID);
 
-                var branch_YearofManufacture = branch_UserFriendlyName.Nodes.Add("Year of Manufacture");
-                branch_YearofManufacture.Nodes.Add(monitor.YearOfManufacture.ToString());
-            }
+                     var branch_YearofManufacture = branch_UserFriendlyName.Nodes.Add("Year of Manufacture");
+                     branch_YearofManufacture.Nodes.Add(monitor.YearOfManufacture.ToString());
+                 }
+             });
+
+
 
             //root_Monitors.ExpandAll();
             return;

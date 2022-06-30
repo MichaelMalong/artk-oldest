@@ -41,13 +41,13 @@ namespace ToolKitApp.Views
 
             // Fetching section.
             var computerSystem = await ComputerSystemServices.Get_ComputerSystem(credentials);
-            var monitors = MonitorServices.Get_Monitors(credentials);
+            var monitors = await MonitorServices.Get_Monitors(credentials);
             var processor = await ProcessorServices.Get_Processor(credentials);
-            var physicalMemories = PhysicalMemoryServices.Get_PhysicalMemories(credentials);
-            var videoControllers = VideoControllerServices.Get_VideoControllers(credentials);
+            var physicalMemories = await PhysicalMemoryServices.Get_PhysicalMemories(credentials);
+            var videoControllers = await VideoControllerServices.Get_VideoControllers(credentials);
             var operatingSystem = await OperatingSystemServices.Get_OperatingSystem(credentials);
-            var logicalDisks = LogicalDiskServices.Get_LogicalDisks(credentials);
-            var diskDrives = DiskDriveServices.Get_DiskDrives(credentials);
+            var logicalDisks = await LogicalDiskServices.Get_LogicalDisks(credentials);
+            var diskDrives = await DiskDriveServices.Get_DiskDrives(credentials);
 
             // Update computer description textbox.
             if (operatingSystem != null)
@@ -58,7 +58,7 @@ namespace ToolKitApp.Views
                 Views.Controllers.TreeViewAudit.Build_TreeViewAudit_ComputerSystem(treeViewAudit, computerSystem);
 
             if (monitors != null)
-                Views.Controllers.TreeViewAudit.Build_TreeViewAudit_Monitors(treeViewAudit, monitors);
+                await Views.Controllers.TreeViewAudit.Build_TreeViewAudit_Monitors(treeViewAudit, monitors);
 
             if (processor != null)
                 Views.Controllers.TreeViewAudit.Build_TreeViewAudit_Processor(treeViewAudit, processor);
@@ -103,7 +103,7 @@ namespace ToolKitApp.Views
 
         }
 
-        private void btnAuditInstalledPrograms_Click(object sender, EventArgs e)
+        private async void btnAuditInstalledPrograms_Click(object sender, EventArgs e)
         {
             treeViewAudit.Nodes.Clear();
             Models.CredentialsModel credentials = new Models.CredentialsModel(
@@ -113,7 +113,7 @@ namespace ToolKitApp.Views
                 txtPassword.Text
                 );
 
-            var programs = InstalledWin32ProgramServices.Get_InstalledWin32Programs(credentials);
+            var programs = await InstalledWin32ProgramServices.Get_InstalledWin32Programs(credentials);
 
             if (programs != null)
                 Views.Controllers.TreeViewAudit.Build_TreeView_InstalledPrograms(treeViewAudit, programs);

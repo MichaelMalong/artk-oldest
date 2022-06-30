@@ -4,11 +4,11 @@ namespace ToolKitApp.Services
 {
     public class VideoControllerServices
     {
-        public static List<VideoControllerModel>? Get_VideoControllers(CredentialsModel credentials)
+        public static async Task<List<VideoControllerModel>?> Get_VideoControllers(CredentialsModel credentials)
         {
             try
             {
-                var result = ToolKitLibrary.ToolKit.SystemManagement.Remoting.QueryCollection(
+                var result = await ToolKitLibrary.ToolKit.SystemManagement.Remoting.QueryCollection(
                     credentials.Domain,
                     credentials.ComputerName,
                     credentials.Username,

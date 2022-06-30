@@ -4,11 +4,11 @@ namespace ToolKitApp.Services
 {
     public class PhysicalMemoryServices
     {
-        public static List<PhysicalMemoryModel> Get_PhysicalMemories(CredentialsModel credentials)
+        public static async Task<List<PhysicalMemoryModel>> Get_PhysicalMemories(CredentialsModel credentials)
         {
             try
             {
-                var result = ToolKitLibrary.ToolKit.SystemManagement.Remoting.QueryCollection(
+                var result = await ToolKitLibrary.ToolKit.SystemManagement.Remoting.QueryCollection(
                     credentials.Domain,
                     credentials.ComputerName,
                     credentials.Username,

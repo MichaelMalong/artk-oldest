@@ -4,11 +4,11 @@ namespace ToolKitApp.Services
 {
     public class LogicalDiskServices
     {
-        public static List<LogicalDiskModel> Get_LogicalDisks(CredentialsModel credentials)
+        public static async Task<List<LogicalDiskModel>> Get_LogicalDisks(CredentialsModel credentials)
         {
             try
             {
-                var result = ToolKitLibrary.ToolKit.SystemManagement.Remoting.QueryCollection(
+                var result = await ToolKitLibrary.ToolKit.SystemManagement.Remoting.QueryCollection(
                     credentials.Domain,
                     credentials.ComputerName,
                     credentials.Username,

@@ -152,9 +152,9 @@ namespace ToolKitLibrary.CLI
             }
         }
 
-        private static void AuditServices()
+        private static async Task AuditServices()
         {
-            var result = ToolKit.SystemManagement.Remoting.QueryCollection(
+            var result = await ToolKit.SystemManagement.Remoting.QueryCollection(
                 StoredDomain,
                 StoredComputer,
                 StoredUsername,
@@ -165,14 +165,17 @@ namespace ToolKitLibrary.CLI
             if (result == null)
                 return;
 
-            foreach (ManagementObject service in result)
+            await Task.Run(() =>
             {
-                foreach (var prop in service.Properties)
+                foreach (ManagementObject service in result)
                 {
-                    Console.WriteLine($"{prop.Name}: {service[prop.Name]}");
+                    foreach (var prop in service.Properties)
+                    {
+                        Console.WriteLine($"{prop.Name}: {service[prop.Name]}");
+                    }
+                    Console.WriteLine("");
                 }
-                Console.WriteLine("");
-            }
+            });
         }
         private static async Task AuditComputerSystem()
         {
@@ -214,10 +217,10 @@ namespace ToolKitLibrary.CLI
             }
         }
 
-        private static void AuditInstalledPrograms()
+        private static async Task AuditInstalledPrograms()
         {
             Console.Clear();
-            var result = ToolKit.SystemManagement.Remoting.QueryCollection(
+            var result = await ToolKit.SystemManagement.Remoting.QueryCollection(
                 StoredDomain,
                 StoredComputer,
                 StoredUsername,
@@ -225,24 +228,27 @@ namespace ToolKitLibrary.CLI
                 "Win32_InstalledWin32Program"
             );
 
-            if (result != null)
+            await Task.Run(() =>
             {
-                foreach (ManagementBaseObject obj in result)
+                if (result != null)
                 {
-                    foreach (var prop in obj.Properties)
+                    foreach (ManagementBaseObject obj in result)
                     {
-                        Console.WriteLine($"{prop.Name}: {obj[prop.Name]}");
+                        foreach (var prop in obj.Properties)
+                        {
+                            Console.WriteLine($"{prop.Name}: {obj[prop.Name]}");
+                        }
+                        Console.WriteLine("");
                     }
-                    Console.WriteLine("");
                 }
-            }
+            });
         }
 
 
-        private static void AuditStorePrograms()
+        private static async void AuditStorePrograms()
         {
             Console.Clear();
-            var result = ToolKit.SystemManagement.Remoting.QueryCollection(
+            var result = await ToolKit.SystemManagement.Remoting.QueryCollection(
                 StoredDomain,
                 StoredComputer,
                 StoredUsername,
@@ -263,10 +269,10 @@ namespace ToolKitLibrary.CLI
             }
         }
 
-        private static void AuditProgramFrameworks()
+        private static async void AuditProgramFrameworks()
         {
             Console.Clear();
-            var result = ToolKit.SystemManagement.Remoting.QueryCollection(
+            var result = await ToolKit.SystemManagement.Remoting.QueryCollection(
                 StoredDomain,
                 StoredComputer,
                 StoredUsername,
@@ -379,9 +385,9 @@ namespace ToolKitLibrary.CLI
                 }
             }
         }
-        private static void AuditLocalDisk2()
+        private static async Task AuditLocalDisk2()
         {
-            var result = ToolKit.SystemManagement.Remoting.QueryCollection(
+            var result = await ToolKit.SystemManagement.Remoting.QueryCollection(
             StoredDomain,
             StoredComputer,
             StoredUsername,

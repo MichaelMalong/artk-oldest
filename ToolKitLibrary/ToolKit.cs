@@ -179,7 +179,7 @@ namespace ToolKitLibrary
 
             public class Remoting
             {
-                public static ManagementObjectCollection? QueryCollection(
+                public static async Task<ManagementObjectCollection?> QueryCollection(
                                string? domainName,
                                string? computer,
                                string? username,
@@ -202,7 +202,7 @@ namespace ToolKitLibrary
 
                         using (var searcher = new ManagementObjectSearcher(conn.Scope, query))
                         {
-                            return searcher.Get();
+                            return await Task.Run(() => { return searcher.Get(); });
                         }
                     }
                     catch (Exception e)

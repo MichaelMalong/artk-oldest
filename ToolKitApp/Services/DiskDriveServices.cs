@@ -1,14 +1,15 @@
+using System.Management;
 using ToolKitApp.Models;
 
 namespace ToolKitApp.Services
 {
     public class DiskDriveServices
     {
-        public static List<DiskDriveModel> Get_DiskDrives(CredentialsModel credentials)
+        public static async Task<List<DiskDriveModel>> Get_DiskDrives(CredentialsModel credentials)
         {
             try
             {
-                var result = ToolKitLibrary.ToolKit.SystemManagement.Remoting.QueryCollection(
+                var result = await ToolKitLibrary.ToolKit.SystemManagement.Remoting.QueryCollection(
                     credentials.Domain,
                     credentials.ComputerName,
                     credentials.Username,
