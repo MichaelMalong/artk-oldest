@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32112.339
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ToolKitLibrary", "ToolKitLibrary\ToolKitLibrary.csproj", "{0D8FB69F-50D2-4C78-B9BF-6ECA3C1778E5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolKitApp", "ToolKitApp\ToolKitApp.csproj", "{960FB034-653B-41C2-9EB2-816152A4A74C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0D8FB69F-50D2-4C78-B9BF-6ECA3C1778E5} = {0D8FB69F-50D2-4C78-B9BF-6ECA3C1778E5}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0D8FB69F-50D2-4C78-B9BF-6ECA3C1778E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D8FB69F-50D2-4C78-B9BF-6ECA3C1778E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D8FB69F-50D2-4C78-B9BF-6ECA3C1778E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D8FB69F-50D2-4C78-B9BF-6ECA3C1778E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{960FB034-653B-41C2-9EB2-816152A4A74C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{960FB034-653B-41C2-9EB2-816152A4A74C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{960FB034-653B-41C2-9EB2-816152A4A74C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{960FB034-653B-41C2-9EB2-816152A4A74C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {831E8F05-322B-463C-838F-80138206F521}
+	EndGlobalSection
+EndGlobal

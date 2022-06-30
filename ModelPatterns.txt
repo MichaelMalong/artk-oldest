@@ -1,0 +1,27 @@
+Monitor: ("ManufacturerName","ProductCodeID","SerialNumberID","UserFriendlyName","YearOfManufacture")
+
+Mouse: ("DeviceID","DeviceInterface","")
+
+
+Memory: ("Capacity","Manufacturer","PartNumber","SerialNumber")
+
+
+GPU: ("AdapterRAM","AdapterCompatibility","Name")
+
+Win32_DiskDrive: ("")
+
+
+
+
+# Legend (DeviceInterface)
+0 {"Other"}
+1 {"Unknown"}
+3 {"Serial"}
+4 {"PS/2"}
+5 {"Infrared"}
+6 {"HP-HIL"}
+7 {"Bus Mouse"}
+8 {"ADP (Apple Desktop Bus)"}
+160 {"Bus Mouse DB-9"}
+161 {"Bus Mouse Micro-DIN"}
+162 {"USB"}

@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <!--<OutputType>library</OutputType>-->
+    <OutputType>library</OutputType>
+    <!--<TargetFramework>net6.0-windows</TargetFramework>-->
+	<TargetFramework>net6.0-windows</TargetFramework>
+    <ImplicitUsings>false</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RuntimeIdentifier>win10-x64</RuntimeIdentifier>
+    <SelfContained>true</SelfContained>
+   <!--<PublishSingleFile>true</PublishSingleFile>-->
+    <PublishTrimmed>false</PublishTrimmed>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Management.Infrastructure" Version="2.0.0" />
+    <PackageReference Include="System.Management.Automation" Version="7.2.1" />
+  </ItemGroup>
+</Project>
