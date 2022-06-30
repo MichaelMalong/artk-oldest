@@ -19,12 +19,12 @@ namespace ToolKitApp.Models
             Username = username;
             UnSecurePassword = unSecurePassword;
 
-            ToolKitLibrary.ToolKit.Helper.DebugAgent(
-                domain,
-                computerName,
-                username,
-                unSecurePassword
-            );
+            //ToolKitLibrary.ToolKit.Helper.DebugAgent(
+            //    domain,
+            //    computerName,
+            //    username,
+            //    unSecurePassword
+            //);
         }
     }
 }
