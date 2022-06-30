@@ -82,9 +82,9 @@ namespace ToolKitApp.Services
             }
 
         }
-        public static MonitorModel? Get_Monitor(CredentialsModel credentials)
+        public static async Task<MonitorModel?> Get_Monitor(CredentialsModel credentials)
         {
-            var result = ToolKitLibrary.ToolKit.SystemManagement.Remoting.Query(
+            var result = await ToolKitLibrary.ToolKit.SystemManagement.Remoting.Query(
             credentials.Domain,
             credentials.ComputerName,
             credentials.Username,

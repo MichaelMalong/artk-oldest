@@ -30,7 +30,7 @@ namespace ToolKitApp.Views
             Populate_TreeViewAudit();
         }
 
-        private void Populate_TreeViewAudit()
+        private async Task Populate_TreeViewAudit()
         {
             var credentials = new ToolKitApp.Models.CredentialsModel(
                 txtDomain.Text,
@@ -40,12 +40,12 @@ namespace ToolKitApp.Views
                 );
 
             // Fetching section.
-            var computerSystem = ComputerSystemServices.Get_ComputerSystem(credentials);
+            var computerSystem = await ComputerSystemServices.Get_ComputerSystem(credentials);
             var monitors = MonitorServices.Get_Monitors(credentials);
-            var processor = ProcessorServices.Get_Processor(credentials);
+            var processor = await ProcessorServices.Get_Processor(credentials);
             var physicalMemories = PhysicalMemoryServices.Get_PhysicalMemories(credentials);
             var videoControllers = VideoControllerServices.Get_VideoControllers(credentials);
-            var operatingSystem = OperatingSystemServices.Get_OperatingSystem(credentials);
+            var operatingSystem = await OperatingSystemServices.Get_OperatingSystem(credentials);
             var logicalDisks = LogicalDiskServices.Get_LogicalDisks(credentials);
             var diskDrives = DiskDriveServices.Get_DiskDrives(credentials);
 

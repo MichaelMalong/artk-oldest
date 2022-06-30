@@ -3,9 +3,9 @@ namespace ToolKitApp.Services
 {
     public class ProcessorServices
     {
-        public static ProcessorModel? Get_Processor(CredentialsModel credentials)
+        public static async Task<ProcessorModel?> Get_Processor(CredentialsModel credentials)
         {
-            var result = ToolKitLibrary.ToolKit.SystemManagement.Remoting.Query(
+            var result = await ToolKitLibrary.ToolKit.SystemManagement.Remoting.Query(
                 credentials.Domain,
                 credentials.ComputerName,
                 credentials.Username,

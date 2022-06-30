@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Management;
+using System.Threading.Tasks;
 
 namespace ToolKitLibrary.CLI
 {
@@ -173,10 +174,10 @@ namespace ToolKitLibrary.CLI
                 Console.WriteLine("");
             }
         }
-        private static void AuditComputerSystem()
+        private static async Task AuditComputerSystem()
         {
             Console.Clear();
-            var result = ToolKit.SystemManagement.Remoting.Query(
+            var result = await ToolKit.SystemManagement.Remoting.Query(
                 StoredDomain,
                 StoredComputer,
                 StoredUsername,
@@ -193,10 +194,10 @@ namespace ToolKitLibrary.CLI
             }
         }
 
-        private static void AuditOperatingSystem()
+        private static async Task AuditOperatingSystem()
         {
             Console.Clear();
-            var result = ToolKit.SystemManagement.Remoting.Query(
+            var result = await ToolKit.SystemManagement.Remoting.Query(
                 StoredDomain,
                 StoredComputer,
                 StoredUsername,
@@ -304,10 +305,10 @@ namespace ToolKitLibrary.CLI
             Console.Write("Done");
         }
 
-        private static void AuditMonitor()
+        private static async Task AuditMonitor()
         {
             Console.Clear();
-            var result = ToolKit.SystemManagement.Remoting.Query(
+            var result = await ToolKit.SystemManagement.Remoting.Query(
                 StoredDomain,
                 StoredComputer,
                 StoredUsername,
@@ -343,11 +344,11 @@ namespace ToolKitLibrary.CLI
         }
 
 
-        private static void AuditDiskDrives()
+        private static async Task AuditDiskDrives()
         {
             Console.Clear();
 
-            var result = ToolKit.SystemManagement.Remoting.Query(
+            var result = await ToolKit.SystemManagement.Remoting.Query(
                 StoredDomain,
                 StoredComputer,
                 StoredUsername,
@@ -428,10 +429,10 @@ namespace ToolKitLibrary.CLI
         }
 
 
-        private static void AuditMouse()
+        private static async Task AuditMouse()
         {
             Console.Clear();
-            var result = ToolKit.SystemManagement.Remoting.Query(
+            var result = await ToolKit.SystemManagement.Remoting.Query(
                 StoredDomain,
                 StoredComputer,
                 StoredUsername,
@@ -448,10 +449,10 @@ namespace ToolKitLibrary.CLI
             }
         }
 
-        private static void AuditKeyboard()
+        private static async Task AuditKeyboard()
         {
             Console.Clear();
-            var result = ToolKit.SystemManagement.Remoting.Query(
+            var result = await ToolKit.SystemManagement.Remoting.Query(
                 StoredDomain,
                 StoredComputer,
                 StoredUsername,

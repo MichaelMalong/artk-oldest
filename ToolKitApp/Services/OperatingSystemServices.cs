@@ -15,9 +15,9 @@ namespace ToolKitApp.Services
                 updateInfo.NewDescription
             );
         }
-        public static OperatingSystemModel? Get_OperatingSystem(CredentialsModel credentials)
+        public static async Task<OperatingSystemModel?> Get_OperatingSystem(CredentialsModel credentials)
         {
-            var result = ToolKitLibrary.ToolKit.SystemManagement.Remoting.Query(
+            var result = await ToolKitLibrary.ToolKit.SystemManagement.Remoting.Query(
                 credentials.Domain,
                 credentials.ComputerName,
                 credentials.Username,

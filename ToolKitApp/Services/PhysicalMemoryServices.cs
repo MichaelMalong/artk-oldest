@@ -51,9 +51,9 @@ namespace ToolKitApp.Services
         }
 
 
-        public static PhysicalMemoryModel? Get_PhysicalMemory(CredentialsModel credentials)
+        public static async Task<PhysicalMemoryModel?> Get_PhysicalMemory(CredentialsModel credentials)
         {
-            var result = ToolKitLibrary.ToolKit.SystemManagement.Remoting.Query(
+            var result = await ToolKitLibrary.ToolKit.SystemManagement.Remoting.Query(
                 credentials.Domain,
                 credentials.ComputerName,
                 credentials.Username,

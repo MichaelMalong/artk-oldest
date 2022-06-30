@@ -4,6 +4,7 @@ using System.IO;
 using System.Management;
 using System.Security;
 using System.Text;
+using System.Threading.Tasks;
 using Microsoft.Management.Infrastructure;
 using Microsoft.Management.Infrastructure.Options;
 
@@ -108,14 +109,22 @@ namespace ToolKitLibrary
                             string? nameSpace = "cimv2"
                             )
                 {
-                    var connection = new ConnectionInstance(
-                        domainName,
-                        computer,
-                        username,
-                        unsecurePassword
-                    );
-                    var collection = connection.Session.QueryInstances($@"{locale}\{nameSpace}", "WQL", $"SELECT * FROM {className}");
-                    return collection;
+                    try
+                    {
+                        var connection = new ConnectionInstance(
+                                               domainName,
+                                               computer,
+                                               username,
+                                               unsecurePassword
+                                           );
+                        var collection = connection.Session.QueryInstances($@"{locale}\{nameSpace}", "WQL", $"SELECT * FROM {className}");
+                        return collection;
+                    }
+                    catch (Exception ex)
+                    {
+                        return null;
+                    }
+
                 }
             }
         }
@@ -163,6 +172,7 @@ namespace ToolKitLibrary
                     catch (Exception e)
                     {
                         Console.WriteLine(e.Message);
+                        return;
                     }
                 }
             }
@@ -203,7 +213,7 @@ namespace ToolKitLibrary
                 }
 
 
-                public static ManagementBaseObject? Query(
+                public static async Task<ManagementBaseObject?> Query(
                             string? domainName,
                             string? computer,
                             string? username,
@@ -212,35 +222,29 @@ namespace ToolKitLibrary
                             string classNameSpace = "cimv2" // Namespaces available are 'cimv2' and 'wmi'
                         )
                 {
-                    try
-                    {
-                        var conn = new ConnectionInstance(
-                                                domainName,
-                                                computer,
-                                                username,
-                                                unsecurePassword,
-                                                classNameSpace
-                                            );
-                        var query = new ObjectQuery($"SELECT * FROM {className}");
 
-                        using (var searcher = new ManagementObjectSearcher(conn.Scope, query))
-                        {
-                            var collection = searcher.Get();
-                            foreach (var obj in collection)
-                            {
-                                return ((ManagementBaseObject)obj);
-                            }
-                        }
-                        return null;
-                    }
-                    catch (Exception e)
+                    var conn = new ConnectionInstance(
+                                            domainName,
+                                            computer,
+                                            username,
+                                            unsecurePassword,
+                                            classNameSpace
+                                        );
+                    var query = new ObjectQuery($"SELECT * FROM {className}");
+
+                    using (var searcher = new ManagementObjectSearcher(conn.Scope, query))
                     {
-                        Console.WriteLine(e.Message);
-                        return null;
+                        var collection = searcher.Get();
+                        foreach (var obj in collection)
+                        {
+                            return await Task.Run(() => { return ((ManagementBaseObject)obj); });
+                        }
                     }
+                    return null;
+
                 }
 
-                public static bool Update(
+                public static async Task<bool> Update(
                     string? domainName,
                     string? computer,
                     string? username,
@@ -252,7 +256,7 @@ namespace ToolKitLibrary
                 {
                     try
                     {
-                        var queryObj = (ManagementObject?)Query(
+                        var queryObj = (ManagementObject)await Query(
                             domainName,
                             computer,
                             username,

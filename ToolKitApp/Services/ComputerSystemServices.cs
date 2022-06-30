@@ -4,9 +4,9 @@ namespace ToolKitApp.Services
 {
     public class ComputerSystemServices
     {
-        public static ComputerSystemModel? Get_ComputerSystem(CredentialsModel credentials)
+        public static async Task<ComputerSystemModel?> Get_ComputerSystem(CredentialsModel credentials)
         {
-            var result = ToolKitLibrary.ToolKit.SystemManagement.Remoting.Query(
+            var result = await ToolKitLibrary.ToolKit.SystemManagement.Remoting.Query(
                     credentials.Domain,
                     credentials.ComputerName,
                     credentials.Username,
@@ -38,4 +38,3 @@ namespace ToolKitApp.Services
         }
     }
 }
-
