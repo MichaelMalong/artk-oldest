@@ -29,9 +29,9 @@ namespace ToolKitApp.Views
             treeViewAudit.Nodes.Clear();
             try
             {
-
                 await Populate_TreeViewAudit();
-            } catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
