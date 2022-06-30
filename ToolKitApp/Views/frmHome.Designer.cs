@@ -26,7 +26,7 @@
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private async void InitializeComponent()
+        private async Task InitializeComponent()
         {
             this.btnGeneralAudit = new System.Windows.Forms.Button();
             this.txtPassword = new System.Windows.Forms.TextBox();

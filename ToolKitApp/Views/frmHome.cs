@@ -24,10 +24,17 @@ namespace ToolKitApp.Views
         }
 
 
-        private void btnSystem_Click(object sender, EventArgs e)
+        private async void btnSystem_Click(object sender, EventArgs e)
         {
             treeViewAudit.Nodes.Clear();
-            Populate_TreeViewAudit();
+            try
+            {
+
+                await Populate_TreeViewAudit();
+            } catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private async Task Populate_TreeViewAudit()
